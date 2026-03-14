@@ -2,12 +2,14 @@
 import { motion } from "framer-motion";
 import { SiJavascript, SiTypescript, SiReact, SiRedux, SiAngular, 
          SiNextdotjs, SiNodedotjs, SiNestjs, SiMongodb, SiPostgresql, 
-         SiMysql, SiRedis, SiAmazon, SiLinux } from "react-icons/si";
+         SiMysql, SiRedis, SiAmazon, SiLinux, SiKubernetes } from "react-icons/si";
+import { FaJava, FaCloud } from "react-icons/fa";
 import { FaCode, FaDatabase } from "react-icons/fa";
 import { BsBraces } from "react-icons/bs";
 
 const skillCategories = {
   "Programming Languages": [
+    { name: "Java", icon: <FaJava className="text-[#ED8B00]" /> },
     { name: "JavaScript", icon: <SiJavascript className="text-[#F7DF1E]" /> },
     { name: "TypeScript", icon: <SiTypescript className="text-[#3178C6]" /> },
   ],
@@ -26,8 +28,10 @@ const skillCategories = {
     { name: "Redis", icon: <SiRedis className="text-[#DC382D]" /> },
   ],
   "Cloud & DevOps": [
+    { name: "Azure", icon: <FaCloud className="text-[#0078D4]" /> },
     { name: "AWS", icon: <SiAmazon className="text-[#FF9900]" /> },
     { name: "Linux", icon: <SiLinux className="text-white" /> },
+    { name: "Kubernetes", icon: <SiKubernetes className="text-[#326CE5]" /> },
   ],
   "Core Skills": [
     { name: "Data Structures", icon: <FaCode className="text-green-400" /> },

@@ -40,7 +40,7 @@ export default function Hero() {
           className="relative h-[400px] w-full mt-8 lg:mt-0"
         >
           <Image
-            src="/profile-sketch.webp"
+            src="/satya.jpg"
             layout="fill"
             objectFit="cover"
             alt="Hero Image"

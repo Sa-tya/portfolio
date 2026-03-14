@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const navItems = ["About", "Skills", "Projects", "Blog", "Contact"];
+const navItems = ["About", "Skills", "Experience", "Education", "Projects", "Blog", "Contact"];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
