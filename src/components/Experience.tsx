@@ -10,7 +10,6 @@ type ExperienceEntry = {
   location: string;
   start: string;
   end: string;
-  durationMonths: number;
   description: string[];
   skills: string[];
 };
@@ -20,11 +19,10 @@ const experiences: ExperienceEntry[] = [
     title: "Backend Developer",
     company: "Trendence Inc.",
     type: "Full-time",
-    dateRange: "Jun 2025 – Present",
+    dateRange: "Jul 2025 – Present",
     location: "Bengaluru, Karnataka, India · Hybrid",
-    start: "Jun 2025",
+    start: "Jul 2025",
     end: "Present",
-    durationMonths: 10,
     description: [
       "Managing Data  infrastructure using Spring Boot, Angular & Azure.",
     ],
@@ -38,7 +36,6 @@ const experiences: ExperienceEntry[] = [
     location: "Bengaluru, Karnataka, India · Hybrid",
     start: "Nov 2024",
     end: "Jun 2025",
-    durationMonths: 8,
     description: [
       "API optimization in Node.js.",
       "UI enhancements in Next.js.",
@@ -53,7 +50,6 @@ const experiences: ExperienceEntry[] = [
     location: "Noida, Uttar Pradesh, India · On-site",
     start: "Apr 2022",
     end: "Oct 2024",
-    durationMonths: 31,
     description: [
       "Full stack development using Node.js, React.js, and MongoDB.",
       "Project deployment on AWS EC2 and AWS Lambda (Serverless).",
@@ -61,6 +57,28 @@ const experiences: ExperienceEntry[] = [
     skills: ["Node.js", "React.js", "MongoDB", "AWS", "Serverless"],
   },
 ];
+
+function parseMonthYear(value: string) {
+  if (value.trim().toLowerCase() === "present") return new Date();
+
+  const [month, year] = value.split(" ");
+  const monthIndex = [
+    "jan","feb","mar","apr","may","jun",
+    "jul","aug","sep","oct","nov","dec"
+  ].indexOf(month.toLowerCase());
+
+  return new Date(Number(year), monthIndex, 1);
+}
+
+function calculateMonths(start: string, end: string) {
+  const startDate = parseMonthYear(start);
+  const endDate = parseMonthYear(end);
+
+  const years = endDate.getFullYear() - startDate.getFullYear();
+  const months = endDate.getMonth() - startDate.getMonth();
+
+  return years * 12 + months + 1; 
+}
 
 function formatMonths(months: number) {
   const years = Math.floor(months / 12);
@@ -79,6 +97,11 @@ export default function Experience() {
     "from-rose-500 to-rose-600",
   ];
 
+  const experiencesWithDuration = experiences.map((exp) => ({
+    ...exp,
+    durationMonths: calculateMonths(exp.start, exp.end),
+  }));
+
   return (
     <section id="experience" className="py-20 px-4 sm:px-8 lg:px-16 bg-black/20">
       <motion.div
@@ -93,7 +116,7 @@ export default function Experience() {
           <div className="absolute left-3 top-0 bottom-0 w-[2px] bg-white/10" />
 
           <div className="space-y-12">
-            {experiences.map((exp, index) => {
+            {experiencesWithDuration.map((exp, index) => {
               const color = colors[index % colors.length];
 
               return (
